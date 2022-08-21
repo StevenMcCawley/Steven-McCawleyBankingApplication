@@ -1,6 +1,5 @@
 const CreateAccount = () => {
   const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState("");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -8,10 +7,11 @@ const CreateAccount = () => {
 
   const validate = (field, label) => {
     if (!field) {
-      setStatus("Error: " + label);
-      setTimeout(() => {
-        setStatus("");
-      }, 3000);
+      alert(`${label} cannot be blank`)
+      return false;
+    }
+    if (label === 'password' && password.length < 8) {
+      alert(`password cannot be less than 8 characters`)
       return false;
     }
     return true;
@@ -19,11 +19,15 @@ const CreateAccount = () => {
 
   const handleCreate = () => {
     console.log("name: ", name, "email: ", email, "password: ", password);
-    if (!validate(name, "name")) return;
-    if (!validate(email, "email")) return;
-    if (!validate(password, "password")) return;
+    if (
+      !validate(name, "name") ||
+      !validate(email, "email") ||
+      !validate(password, "password")
+      ) {
+      return;
+    }
     console.log(context);
-    context.users.push({ name, email, password, balace: 100 });
+    context.users.push({ name, email, password, balance: 100 });
     setShow(false);
   };
 
@@ -35,8 +39,7 @@ const CreateAccount = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Create Account Component</h2>
+    <div className="container my-3">
       <Card
         header="Create an account here"
         body={
@@ -77,8 +80,9 @@ const CreateAccount = () => {
               <br />
               <button
                 type="sumbit"
-                className="btn btn-light"
+                className="btn btn-primary"
                 onClick={handleCreate}
+                disabled = {!name && !email && !password}
               >
                 Create Account
               </button>
@@ -88,7 +92,7 @@ const CreateAccount = () => {
               <h5>Success</h5>
               <button
                 type="sumbit"
-                className="btn btn-light"
+                className="btn btn-primary"
                 onClick={clearForm}
               >
                 Add another account

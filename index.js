@@ -1,3 +1,7 @@
+const setCurrentPage = (page) => {
+  
+}
+
 const Spa = () => {
   return (
     <>
@@ -7,21 +11,25 @@ const Spa = () => {
           value={{
             users: [
               {
-                name: "abel",
-                email: "abel@mit.edu",
-                password: "secret",
-                balance: 100,
+                name: "joe",
+                email: "schmoe.com",
+                password: "joeSchmoe",
+                balance: "100",
+              },
+              {
+                name: "elijah",
+                email: "alvarez.com",
+                password: "bossman123",
+                balance: "100",
               },
             ],
           }}
         >
           <Route path="/" exact component={Home} />
-          <Route path="/pages/allData" component={AllData} />
-          <Route path="/pages/balance" component={Balance} />
-          <Route path="/pages/createAccount" component={CreateAccount} />
           <Route path="/pages/deposit" component={Deposit} />
-          <Route path="/pages/login" component={Login} />
           <Route path="/pages/withdraw" component={Withdraw} />
+          <Route path="/pages/allData" component={AllData} />
+          <Route path="/pages/createAccount" component={CreateAccount} />
         </UserContext.Provider>
       </HashRouter>
     </>
