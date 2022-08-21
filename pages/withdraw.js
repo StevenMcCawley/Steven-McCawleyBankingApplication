@@ -8,6 +8,10 @@ const Withdraw = () => {
       alert(`${label} cannot be blank, must contain only digits, cannot be negative, and cannot excede your account balance`)
       return false;
     }
+    if (amount < 0) {
+      alert(`Amount cannot be negative`)
+      return false;
+    }
     return true;
   };
 
