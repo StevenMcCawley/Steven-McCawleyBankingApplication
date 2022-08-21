@@ -9,14 +9,7 @@ const Spa = () => {
         <Navbar />
         <UserContext.Provider
           value={{
-            users: [
-              {
-                name: "joe",
-                email: "schmoe.com",
-                password: "joeSchmoe",
-                balance: "100",
-              }
-            ],
+            users: [],
           }}
         >
           <Route path="/" exact component={Home} />
