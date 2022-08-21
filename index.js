@@ -15,13 +15,7 @@ const Spa = () => {
                 email: "schmoe.com",
                 password: "joeSchmoe",
                 balance: "100",
-              },
-              {
-                name: "elijah",
-                email: "alvarez.com",
-                password: "bossman123",
-                balance: "100",
-              },
+              }
             ],
           }}
         >
