@@ -8,6 +8,10 @@ const Deposit = () => {
       alert(`${label} cannot be blank, must contain only digits, and must not be negative`)
       return false;
     }
+    if (amount < 0) {
+      alert(`amount cannot be negative`)
+      return false;
+    }
     return true;
   };
 
