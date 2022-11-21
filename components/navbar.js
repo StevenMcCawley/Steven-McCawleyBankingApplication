@@ -1,4 +1,6 @@
 const Navbar = () => {
+  const context = React.useContext(UserContext);
+
   const setPageCurrent = (e) => {
     e.nativeEvent.path
       .filter((el) => el.id === "navbarSupportedContent")[0]
@@ -7,8 +9,8 @@ const Navbar = () => {
         element.classList.remove("active");
         element.removeAttribute("aria-current");
       });
-      e.target.classList.add("active");
-      e.target.setAttribute("aria-current", "page");
+    e.target.classList.add("active");
+    e.target.setAttribute("aria-current", "page");
   };
 
   return (
@@ -35,7 +37,12 @@ const Navbar = () => {
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link mx-1 active" href="#" aria-current="page" onClick={setPageCurrent}>
+                <a
+                  className="nav-link mx-1 active"
+                  href="#"
+                  aria-current="page"
+                  onClick={setPageCurrent}
+                >
                   Home
                 </a>
               </li>
@@ -57,7 +64,7 @@ const Navbar = () => {
                   Withdraw
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a
                   className="nav-link mx-1"
                   href="#/pages/allData"
@@ -65,18 +72,25 @@ const Navbar = () => {
                 >
                   All Data
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {/* <li className="nav-item"><a>currently logged in</a></li> */}
+              {/* TODO: this doesnt work */}
+              {!(context?.currentUser == null) && 
+                <li>
+                  <span className="nav-link mx-1">Currently logged in as {context?.currentUser.email}</span>
+                </li>
+              }
               <li className="nav-item">
                 <a
                   className="nav-link mx-1"
                   href="#/pages/createAccount"
                   onClick={setPageCurrent}
                 >
-                  Create Account
+                  Create Account or Login
                 </a>
               </li>
             </ul>
